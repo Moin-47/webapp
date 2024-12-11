@@ -1,0 +1,20 @@
+pipeline {
+    agent {
+        label 'server'
+    }
+
+    stages {
+        stage('retrive') {
+            steps {
+                sh 'rm -rf *'
+                sh 'git clone https://github.com/Moin-47/webapp.git'
+            }
+        }
+        stage('deploy')
+        {
+            steps{
+                sh 'cp -r /home/ubuntu/workspace/deployment/webapp/* /var/www/html'
+            }
+        }
+    }
+}
